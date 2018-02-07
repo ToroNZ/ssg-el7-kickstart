@@ -16,6 +16,7 @@
 
 # GLOBAL VARIABLES
 DIR=`pwd`
+DATE=`date +%d_%m_%Y`
 
 # USAGE STATEMENT
 function usage() {
@@ -129,16 +130,16 @@ echo "Remastering RHEL DVD Image..."
 cd $DIR/rhel-dvd
 chmod u+w isolinux/isolinux.bin
 find . -name TRANS.TBL -exec rm '{}' \; 
-/usr/bin/mkisofs -J -T -V "RHEL-$RHEL_VERSION Server.x86_64" -o $DIR/ssg-rhel-$RHEL_VERSION.iso -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -eltorito-alt-boot -e images/efiboot.img -no-emul-boot -R -m TRANS.TBL .
+/usr/bin/mkisofs -J -T -V "RHEL-$RHEL_VERSION Server.x86_64" -o $DIR/ssg-rhel-$RHEL_VERSION-$DATE.iso -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -eltorito-alt-boot -e images/efiboot.img -no-emul-boot -R -m TRANS.TBL .
 cd $DIR
 rm -rf $DIR/rhel-dvd
 echo "Done."
 
 echo "Signing RHEL DVD Image..."
-/usr/bin/isohybrid --uefi $DIR/ssg-rhel-$RHEL_VERSION.iso &> /dev/null
-/usr/bin/implantisomd5 $DIR/ssg-rhel-$RHEL_VERSION.iso
+/usr/bin/isohybrid --uefi $DIR/ssg-rhel-$RHEL_VERSION-$DATE.iso &> /dev/null
+/usr/bin/implantisomd5 $DIR/ssg-rhel-$RHEL_VERSION-$DATE.iso
 echo "Done."
 
-echo "DVD Created. [ssg-rhel-$RHEL_VERSION.iso]"
+echo "DVD Created. [ssg-rhel-$RHEL_VERSION-$DATE.iso]"
 
 exit 0
