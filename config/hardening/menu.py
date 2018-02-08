@@ -81,7 +81,7 @@ class Display_Menu:
     
         # Create Main Window
         self.window = gtk.Window()
-        self.window.set_title("Red Hat Enterprise Linux 7 - SSG Installation Menu")
+        self.window.set_title("Red Hat Enterprise Linux 7 - Datacom Installation Menu")
         self.window.set_position(gtk.WIN_POS_CENTER)
         self.window.connect("delete_event",gtk.main_quit)
         self.display = gtk.gdk.display_get_default()
@@ -114,7 +114,7 @@ class Display_Menu:
         # Creates Information Message
         self.label = gtk.Label('This DVD installs Red Hat Enterprise Linux 7 with configurations required by multiple government regulations')
         self.vbox.add(self.label)
-        self.label = gtk.Label('using the SCAP Security Guide (SSG) as a hardening script.                  RHEL 7 (SSG DVD Installer v.0.8b)')
+        self.label = gtk.Label('using the SCAP Security Guide (SSG) as a hardening script.                  RHEL 7')
         self.vbox.add(self.label)
 
         # Blank Label
@@ -481,10 +481,10 @@ class Display_Menu:
                 self.MessageBox(self.window,"<b>Recommended minimum of 8Gb disk space for a Minimal Install!</b>\n\n You have "+str(self.disk_total)+"Gb available.",gtk.MESSAGE_WARNING)
             self.opt_partition.set_value(0)
             self.www_partition.set_value(0)
-            self.swap_partition.set_value(5)
+            self.swap_partition.set_value(3)
             self.tmp_partition.set_value(10)
-            self.var_partition.set_value(10)
-            self.log_partition.set_value(10)
+            self.var_partition.set_value(11)
+            self.log_partition.set_value(11)
             self.audit_partition.set_value(10)
             self.home_partition.set_value(25)
             self.root_partition.set_value(30)
