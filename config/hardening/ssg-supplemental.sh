@@ -281,6 +281,7 @@ cat <<EOF > /etc/audit/rules.d/audit.rules
 -a always,exit -F arch=b64 -S sethostname -S setdomainname -k audit_network_modifications
 -w /etc/issue -p wa -k audit_network_modifications
 -w /etc/issue.net -p wa -k audit_network_modifications
+-w /etc/issue.ssh -p wa -k audit_network_modifications
 -w /etc/hosts -p wa -k audit_network_modifications
 -w /etc/sysconfig/network -p wa -k audit_network_modifications
 
@@ -468,6 +469,7 @@ done
 sed -i '/Ciphers.*/d' /etc/ssh/sshd_config
 sed -i '/MACs.*/d' /etc/ssh/sshd_config
 sed -i '/Protocol.*/d' /etc/ssh/sshd_config
+sed -i 's/Banner/#&/' /etc/ssh/sshd_config
 echo "Protocol 2" >> /etc/ssh/sshd_config
 echo "Ciphers aes128-ctr,aes192-ctr,aes256-ctr" >> /etc/ssh/sshd_config
 echo "MACs hmac-sha2-512,hmac-sha2-256" >> /etc/ssh/sshd_config
